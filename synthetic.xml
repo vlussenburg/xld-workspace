@@ -4,18 +4,26 @@
 -->
 <synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-	<type type="cg.AutosysInstaller" extends="generic.Container">
-	    <property name="environmentName" />
-	    <property name="javaHome" default="/users/java/jdk32"/>
-	    <property name="firstMachine" description="The autosys install always installs to exactly two hosts. This property indicates the first host to install to."/>
-	    <property name="secondMachine" description="The autosys install always installs to exactly two hosts. This property indicates the second host to install to."/>
-	</type>
+    <type type="cg.AutosysInstaller" extends="generic.Container">
+        <property name="environmentName" />
+        <property name="javaHome" default="/users/java/jdk32"/>
+        <property name="configDir" default="/tmp"/>
+    </type>
 
-	<type type="cg.AutosysInstalledPackage" extends="generic.ExecutedScriptWithDerivedArtifact" deployable-type="cp.App"
-	      container-type="cp.AutosysInstaller">
-	    <generate-deployable type="cp.AutosysInstallPackage" extends="generic.Archive"/>
-	    <property name="createScript" default="cg/installer" hidden="true"/>
-	    <property name="destroyScript" default="cg/uninstaller" hidden="true"/>
-	</type>
+    <type type="cg.DeployedAutosysInstallerConfig" extends="generic.CopiedArtifact" deployable-type="cg.AutosysInstallerConfig"
+          container-type="cg.AutosysInstaller">
+        <generate-deployable type="cg.AutosysInstallerConfig" extends="generic.File"/>
+        <property name="targetDirectory" default="${deployed.container.configDir}/${deployed.container.environmentName}/${deployed.applicationName}/" hidden="true"/>
+        <property name="targetFile" default="envs.json" hidden="true"/>
+        <property name="createTargetDirectory" kind="boolean" default="true" hidden="true"/>
+    </type>
+
+    <type type="cg.AutosysInstalledPackage" extends="generic.ExecutedScriptWithDerivedArtifact" deployable-type="cg.AutosysInstallPackage"
+          container-type="cg.AutosysInstaller">
+        <generate-deployable type="cg.AutosysInstallPackage" extends="generic.Archive"/>
+        <property name="applicationName" />
+        <property name="createScript" default="cg/installer" hidden="true"/>
+        <property name="destroyScript" default="cg/uninstaller" hidden="true"/>
+    </type>
 
 </synthetic>
