@@ -3,4 +3,19 @@
     Note: If you modify this file, you must restart the XL Deploy server.
 -->
 <synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<type type="cg.AutosysInstaller" extends="generic.Container">
+	    <property name="environmentName" />
+	    <property name="javaHome" default="/users/java/jdk32"/>
+	    <property name="firstMachine" description="The autosys install always installs to exactly two hosts. This property indicates the first host to install to."/>
+	    <property name="secondMachine" description="The autosys install always installs to exactly two hosts. This property indicates the second host to install to."/>
+	</type>
+
+	<type type="cg.AutosysInstalledPackage" extends="generic.ExecutedScriptWithDerivedArtifact" deployable-type="cp.App"
+	      container-type="cp.AutosysInstaller">
+	    <generate-deployable type="cp.AutosysInstallPackage" extends="generic.Archive"/>
+	    <property name="createScript" default="cg/installer" hidden="true"/>
+	    <property name="destroyScript" default="cg/uninstaller" hidden="true"/>
+	</type>
+
 </synthetic>
