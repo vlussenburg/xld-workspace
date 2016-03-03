@@ -5,13 +5,13 @@
 <synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <type type="cg.AutosysInstaller" extends="generic.Container">
-        <property name="environmentName" />
-        <property name="javaHome" default="/users/java/jdk32"/>
-        <property name="toolDir" default="/users/xldeploy-agent/DeployTools/c/all/cg/ad/asinst/asinst" hidden="true"/>
-        <property name="configDir" default="/tmp"/>
-        <property name="autosysHost" />
-        <property name="autosysInstanceName" />
-        <property name="autosysPort" default="9000" kind="integer"/>        
+        <property name="environmentName" description="Target Environment" />
+        <property name="javaHome" description="JAVA_HOME directory" default="/users/java/jdk32"/>
+        <property name="toolDir" description="Tool directory" default="/users/xldeploy-agent/DeployTools/c/all/cg/ad/asinst/asinst" hidden="true"/>
+        <property name="configDir" description="Copy directory" default="/tmp"/>
+        <property name="autosysHost" description="AutoSys hostname" />
+        <property name="autosysInstanceName" description="AutoSys instance name" />
+        <property name="autosysPort" description="AutoSys port" default="9000" kind="integer"/>        
     </type>
 
     <type type="cg.DeployedAutosysInstallerConfig" extends="generic.CopiedArtifact" deployable-type="cg.AutosysInstallerConfig"
@@ -19,14 +19,14 @@
         <generate-deployable type="cg.AutosysInstallerConfig" extends="generic.File"/>
         <property name="targetDirectory" default="${deployed.container.configDir}/${deployed.container.environmentName}/${deployed.applicationName}/" hidden="true"/>
         <property name="targetFile" default="envs.json" hidden="true"/>
-        <property name="applicationName" />
+        <property name="applicationName" description="AutoSys application name" />
         <property name="createTargetDirectory" kind="boolean" default="true" hidden="true"/>
     </type>
 
     <type type="cg.AutosysInstalledPackage" extends="generic.ExecutedScriptWithDerivedArtifact" deployable-type="cg.AutosysInstallPackage"
           container-type="cg.AutosysInstaller">
         <generate-deployable type="cg.AutosysInstallPackage" extends="generic.Archive"/>
-        <property name="applicationName" />
+        <property name="applicationName" description="AutoSys application name" />
         <property name="createOrder" default="51" kind="integer" />
         <property name="createScript" default="cg/autosys/installer" hidden="true"/>
         <property name="destroyScript" default="cg/autosys/uninstaller" hidden="true"/>
