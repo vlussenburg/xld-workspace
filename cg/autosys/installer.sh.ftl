@@ -1,3 +1,12 @@
-export JAVA_HOME={{JAVA_HOME}}
-cd {{TOOL_DIR}}
-{{TOOL_DIR}}/asinst.sh validate {{INSTANCE_NAME}} {{AUTOSYS_HOST}} {{AUTOSYS_PORT}} {{COPY_DIR}}/araas_1.0.105.zip {{COPY_DIR}}/env.txt {{ENV_NAME}}
+
+<#assign container = deployed.container>
+
+<#assign envsJsonPath="${container.configDir}/${container.environmentName}/${deployed.applicationName}/envs.json">
+
+
+
+export JAVA_HOME=${container.javaHome}
+
+cd ${container.toolDir}
+
+./asinst.sh validate ${container.autosysInstanceName} ${container.autosysHost} ${container.autosysPort} ${deployed.file} ${envsJsonPath} ${container.environmentName}
