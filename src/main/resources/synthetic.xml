@@ -19,6 +19,7 @@
     <type type="cg.AutosysInstalledPackage" extends="generic.ExecutedScript" deployable-type="cg.AutosysInstallPackage" container-type="cg.AutosysInstaller">
         <generate-deployable type="cg.AutosysInstallPackage" extends="generic.Archive" />
         <property name="templateClasspathResources" kind="set_of_string" default="cg/autosys/env.json" hidden="true" />
+	<property name="jsonConfig" kind="map_string_string" />
         <property name="applicationName" description="AutoSys application name" />
         <property name="installAction" description="Confirm Install Action" kind="boolean" default="false" required="true" />
         <property name="createOrder" default="51" kind="integer" />

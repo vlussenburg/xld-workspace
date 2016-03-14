@@ -6,12 +6,15 @@
 
 <#-- END FREEMMARKER TEMPLATE DEFINITIONS -->
 
-export JAVA_HOME=${container.javaHome}
+#export JAVA_HOME=${container.javaHome}
+#
+#cd ${container.toolDir}
+#
+#if ${deployed.installAction?string}; then
+#        ./asinst.sh install ${installArgs}
+#else
+#        ./asinst.sh validate ${installArgs}
+#fi
 
-cd ${container.toolDir}
-
-if ${deployed.installAction?string}; then
-        ./asinst.sh install ${installArgs}
-else
-        ./asinst.sh validate ${installArgs}
-fi
+# Commented the rest out to see the .json file after templating
+cat ${step.remoteWorkingDirectory.path}/env.json
