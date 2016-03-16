@@ -4,25 +4,4 @@
 -->
 <synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <type type="cg.AutosysInstaller" extends="generic.Container">
-        <property name="environmentName" description="Target Environment" />
-        <property name="javaHome" description="JAVA_HOME directory" default="/users/java/jdk32"/>
-        <property name="toolDir" description="Tool directory" default="/users/xldeploy-agent/DeployTools/c/all/cg/ad/asinst/asinst" hidden="true" />
-        <property name="autosysHost" description="AutoSys hostname" />
-        <property name="autosysInstanceName" description="AutoSys instance name" />
-        <property name="autosysPort" description="AutoSys port" default="9000" kind="integer" />
-        <property name="autosysJobAccount" description="AutoSys job account" default="jd0mars" />
-        <property name="host1" description="1st host" />
-        <property name="host2" description="2nd host" />
-    </type>
-
-    <type type="cg.AutosysInstalledPackage" extends="generic.ExecutedScript" deployable-type="cg.AutosysInstallPackage" container-type="cg.AutosysInstaller">
-        <generate-deployable type="cg.AutosysInstallPackage" extends="generic.Archive" />
-        <property name="templateClasspathResources" kind="set_of_string" default="cg/autosys/env.json" hidden="true" />
-        <property name="applicationName" description="AutoSys application name" />
-        <property name="installAction" description="Confirm Install Action" kind="boolean" default="false" required="true" />
-        <property name="createOrder" default="51" kind="integer" />
-        <property name="createScript" default="cg/autosys/installer" hidden="true" />
-    </type>
-
 </synthetic>
