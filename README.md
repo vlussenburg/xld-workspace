@@ -1,12 +1,15 @@
-# xld-workspace
-hack repo to sync between desktop and virtual server
+# Installation
+Drop the built JAR file in the XLDEPLOY_SERVER/plugins directory. Restart the server.
 
-# design decisions
+# Usage
+For every deployment of an AutosysPackage, a script will look through the dictionaries and find VMachine definition based on the standard that is described in Design decisions below. Note that all four properties (NAME, MAX_LOAD, FACTOR and HOST) need to be present for any given VMachine definition. 
+
+# Design decisions
 The package is going to contain XL Deploy placeholders, probably with the common {{KEY}} format, but maybe not. We'll find out soon.
 
-Some placeholder will have a specific recognizable string within the key, like: NAMESPACE_VMACHINE_N_SUBKEY where NAMESPACE is string that has no underscore characters in it, VMACHINE is the static string that XL Deploy will recognize the key with, N is a integer with the index (let's say max 2 numbers) and SUBKEY is either NAME, HOST, MAX_LOAD or FACTOR. XL Deploy will retrieve all these keys and will generate a Vmachine definition for each NAMESPACE with the properties in SUBKEY.
+Some placeholders will have a specific recognizable string within the key, like: NAMESPACE\_VMACHINE\_N\_PROPERTY where NAMESPACE is string that has no underscore characters in it (like: MARS), VMACHINE is the static string that XL Deploy will recognize the key with, N is a integer with the index (like; 0, 1) and PROPERTY is either NAME, HOST, MAX_LOAD or FACTOR. XL Deploy will retrieve all these keys and will generate a Vmachine definition for the installer.
 
-Example:
+For example, given these dictionary values:
 ```properties
 MARS_VMACHINE_0_NAME=mars_Vmachine
 MARS_VMACHINE_0_MAX_LOAD=20
@@ -18,7 +21,7 @@ MARS_VMACHINE_1_FACTOR=1.00
 MARS_VMACHINE_1_HOST=araqa-v2
 ```
 
-will generate
+XL Deploy will generate
 ```json
 {
         "${container.environmentName}": {
@@ -39,4 +42,4 @@ will generate
         }
 }
 ```
-(replaceing the container properties with the relevant values, obviously)
+(replacing the container properties with the relevant values, obviously)
