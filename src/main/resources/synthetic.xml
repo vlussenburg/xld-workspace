@@ -7,7 +7,7 @@
     <type type="cg.AutosysInstaller" extends="generic.Container">
         <property name="environmentName" description="Target Environment, for example dev1" />
         <property name="javaHome" description="JAVA_HOME directory" default="/users/java/jdk32"/>
-        <property name="tempDir" required="true" description="Temp directory that is unique for this container." />
+        <property name="tempDir" required="true" description="Temporary directory that is unique for this container." />
         <property name="toolDir" description="Tool directory" default="/users/xldeploy-agent/DeployTools/c/all/cg/ad/asinst/asinst" hidden="true" />
         <property name="autosysHost" description="AutoSys hostname, for example server-v1" />
         <property name="autosysInstanceName" default="DV0" description="AutoSys instance name, for example DV0" />

@@ -9,8 +9,11 @@ FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALA
 <rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
 	<!-- Add your <rule ...> and <disable-rule ...> elements here -->
 
-	<rule name="cg.AutosysInstalledPackage_plan_CREATE_MODIFY" scope="plan">
-    	<planning-script-path>cg/autosys/get_vmachines_from_dicts.py</planning-script-path>
+	<!--
+		This is a planning scope rule, because then the PlanningContext can be used to pass objects to the template step. It did not work with ExecutionContext. 
+	-->
+	<rule name="cg.AutosysInstalledPackage_plan" scope="plan">
+		<planning-script-path>cg/autosys/get_vmachines_from_dicts.py</planning-script-path>
 	</rule>
 
 	<rule name="cg.AutosysInstalledPackage_deployed_CREATE_MODIFY" scope="deployed">
@@ -20,7 +23,6 @@ FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALA
 			<operation>MODIFY</operation>
 		</conditions>
 		<steps>
-
 			<template>
 				<order>50</order>
 				<description>Generate the environment config file</description>
@@ -31,7 +33,6 @@ FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALA
 					<context expression="true">context</context>
 				</freemarker-context>
 			</template>
-
 		</steps>
 	</rule> 
 
