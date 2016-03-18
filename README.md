@@ -11,7 +11,7 @@ This deployable represents an archive with autosys job definitions. The package 
 In the future the functionality in the installer (asint.sh) should move into this plugin so the full power of the XL Deploy repository can be leveraged instead of doing magic basic on specific dictionary key formats and values.
 
 ### Container: cg.AutosysInstaller
-This containers represent the piece of middleware that allows us to push the autosys package to the target environments. Note that from the XL Deploy point of view, it deploys the package to the Installer, and the installer by itself deploys the jobs to the actual hosts. 
+This containers represent the piece of middleware that allows us to push the autosys package to the target environments. Note that from the XL Deploy point of view, it deploys the package to the Installer, and the installer by itself deploys the jobs to the actual hosts. XL Deploy does invoke it, but needs to get all the details from dictionary values instead of out of the repository, which is how deployments normally work in XL Deploy. 
 
 ## Vmachine definitions
 The installer needs to know which Vmachine to create a part of the deployment. All you need to do is add the Vmachine info to the dictionary in the right format and XL Deploy will do the heavy lifting and pass the right config to the installer.
