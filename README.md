@@ -2,12 +2,7 @@
 Drop the built JAR file in the XLDEPLOY_SERVER/plugins directory. Restart the server.
 
 # Usage
-For every deployment of an AutosysPackage, a script will look through the dictionaries and find VMachine definition based on the standard that is described in Design decisions below. Note that all four properties (NAME, MAX_LOAD, FACTOR and HOST) need to be present for any given VMachine definition. 
-
-# Design decisions
-The package is going to contain XL Deploy placeholders, probably with the common {{KEY}} format, but maybe not. We'll find out soon.
-
-Some placeholders will have a specific recognizable string within the key, like: NAMESPACE\_VMACHINE\_N\_PROPERTY where NAMESPACE is string that has no underscore characters in it (like: MARS), VMACHINE is the static string that XL Deploy will recognize the key with, N is a integer with the index (like; 0, 1) and PROPERTY is either NAME, HOST, MAX_LOAD or FACTOR. XL Deploy will retrieve all these keys and will generate a Vmachine definition for the installer.
+This plugin works upon values entered in the dictionaries associated with the environment when a Autosys package is deployed to. The name of the dictionary entry should comply to the following format: NAMESPACE\_VMACHINE\_N\_PROPERTY where NAMESPACE is string that has no underscore characters in it (like: MARS), VMACHINE is the static string that XL Deploy will recognize the key with, N is a integer with the index (like; 0, 1) and PROPERTY is either NAME, HOST, MAX_LOAD or FACTOR. XL Deploy will retrieve all these keys and will generate a Vmachine definition for the installer.
 
 For example, given these dictionary values:
 ```properties
@@ -43,3 +38,9 @@ XL Deploy will generate
 }
 ```
 (replacing the container properties with the relevant values, obviously)
+
+For every deployment of an AutosysPackage, a script will look through the dictionaries and find VMachine definitions based on the standard that is described in Design decisions below. Note that all four properties (NAME, MAX_LOAD, FACTOR and HOST) need to be present for any given VMachine definition. So all you need to do is add the keys to the dictionary and XL Deploy will do the heavy lifting.
+
+# Design decisions
+The package is going to contain XL Deploy placeholders, probably with the common {{KEY}} format, but maybe not. We'll find out soon.
+
