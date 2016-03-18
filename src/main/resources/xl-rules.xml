@@ -1,0 +1,39 @@
+<!--
+THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+-->
+<!--
+	Note: If you modify this file and automatic reloading is disabled in `planner.conf`, you must restart the XL Deploy server.
+-->
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+	<!-- Add your <rule ...> and <disable-rule ...> elements here -->
+
+	<rule name="cg.AutosysInstalledPackage_plan_CREATE_MODIFY" scope="plan">
+    	<planning-script-path>cg/autosys/get_vmachines_from_dicts.py</planning-script-path>
+	</rule>
+
+	<rule name="cg.AutosysInstalledPackage_deployed_CREATE_MODIFY" scope="deployed">
+		<conditions>
+			<type>cg.AutosysInstalledPackage</type>
+			<operation>CREATE</operation>
+			<operation>MODIFY</operation>
+		</conditions>
+		<steps>
+
+			<template>
+				<order>50</order>
+				<description>Generate the environment config file</description>
+				<target-path expression="true">deployed.container.tempDir + "/" + deployed.name + "/env.json"</target-path>
+				<template-path>cg/autosys/env.json.ftl</template-path>
+				<freemarker-context>
+					<deployedApplication expression="true">deployedApplication</deployedApplication>
+					<context expression="true">context</context>
+				</freemarker-context>
+			</template>
+
+		</steps>
+	</rule> 
+
+
+</rules>

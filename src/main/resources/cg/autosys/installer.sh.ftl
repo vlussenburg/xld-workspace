@@ -2,16 +2,13 @@
 
 <#assign container = deployed.container>
 
-<#assign installArgs = "${container.autosysInstanceName} ${container.autosysHost} ${container.autosysPort} ${step.remoteWorkingDirectory.path}/${step.artifact.name} ${step.remoteWorkingDirectory.path}/env.json ${container.environmentName}">
-
 <#-- END FREEMMARKER TEMPLATE DEFINITIONS -->
 
 export JAVA_HOME=${container.javaHome}
 
 cd ${container.toolDir}
 
-if ${deployed.installAction?string}; then
-        ./asinst.sh install ${installArgs}
-else
-        ./asinst.sh validate ${installArgs}
-fi
+<#assign command = "./asinst.sh install ${container.autosysInstanceName} ${container.autosysHost} ${container.autosysPort} ${deployed.file} ${container.tempDir}/${deployed.name}/env.json ${container.environmentName}">
+
+echo "Executing ${command}"
+${command}
