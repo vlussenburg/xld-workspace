@@ -24,7 +24,7 @@ def get_vmachines_from_dicts(dictionaries):
 				splits[3] == "NAME"):
 
 				logger.info("Found a new VMachine name definition %s" % key)
-			
+
 				# Get us the prefix (MARS_VMACHINE_0) which we can use for lookups below
 				splits.remove("NAME")
 				prefix = KEY_SEPARATOR.join(splits)			
