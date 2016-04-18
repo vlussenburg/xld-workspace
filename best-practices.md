@@ -72,9 +72,11 @@ Although templates for scripts are part of the plugin as well, you can create a 
 
 ## Create rules
 Rules are a relatively new feature in XL Deploy. Rules are focused on defining crosscutting behavior across different types through the tool. An example of this is a pre deployment step for all deployments done.
-•	Checksum validation plugin, which serves as a good example
-•	Rules tutorial, how to define rules
-•	Steps tutorial, the steps that can be part of the rules
+
+-	Checksum validation plugin, which serves as a good example
+-	Rules tutorial, how to define rules
+-	Steps tutorial, the steps that can be part of the rules
+
 Duplicate rules across plugins and xl-rules.xml will throw errors when XL Deploy starts or refreshes rules. However, XL Deploy will not fail to start or crash, making the issue less obvious. Awareness across plugins and xl-rules.xml is necessary. Plugin type, rule and resource names should have good naming practices in order to make behavior obvious. 
 
 ## Plugin promotion
