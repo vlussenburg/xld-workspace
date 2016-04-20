@@ -22,11 +22,12 @@ We recommand there will be a sandbox XL Deploy made available (not yet available
 
 ### Preparing your plugin
 
-You start your development cycle by defining a name for your plugin and requesting a git repository. Usually, the name of the plugin is derived from the container or technology stack it adds support for, like: xld-cg-autosys-plugin or xld-cg-websphere-plugin.  For the name of the actual plugin file that is built, we recommend the following the XL Deploy convention of <companycode>-xld-<pluginname>-plugin. The build system will take of naming the deliverable correctly.
+You start your development cycle by defining a name for your plugin and requesting a git repository. Usually, the name of the plugin is derived from the container or technology stack it adds support for, like: xld-autosys-plugin or xld-websphere-plugin.  For the name of the actual plugin file that is built, we recommend the following the XL Deploy convention of \<companycode\>-xld-\<pluginname\>-plugin. The build system will take of naming the deliverable correctly.
 
 ### Setting up your tools and workspace
 
-Since plugin development is not unlike software development, we recommend this to be done in a professional manner using development best practices like version control and automated repeatable builds. The tools selected for plugin development are Git (using Atlassian Stash) Source Control and the Atlassian Bamboo build server.  Be sure to look at existing examples in the Prod Stash server, under ARA. The project ‘xldautosys’ is a good place to look at as an example.
+Since plugin development is not unlike software development, we recommend this to be done in a professional manner using development best practices like version control and automated repeatable builds. Every plugin should have its own repository in a version control system like SVN or Git. You should also consider building the plugin using a CI server like Bamboo or Jenkins.
+
 There is no official recommended editor for XL Deploy, but consider Notepad++, a decent tool for editing Jython, XML and shell scripts. Don’t even think about doing any work on plugins with regular notepad!
 
 ### Creating the plugin project structure
@@ -47,7 +48,29 @@ Note: If you modify this file, you must restart the XL Deploy server.
 ````
 
 Be sure to read back in the Customization Manual if you forgot what the purpose of the synthetic.xml is!
-Now, open up the pom.xml file make sure to rename the plugin to the name of your choosing.
+
+If you're required to use maven, you can ddd a pom.xml in the root with the following content:
+````
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>xld-thing-plugin</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>xld-thing-plugin</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+</project>
+````
+
+Make sure to rename the plugin to the name of your choosing.
+
 Once you finished this, you can run mvn clean install and the plugin JAR file will end up in the target/ folder in the project root. This JAR is the packaged plugin that will be placed in the plugins folder of XL Deploy later.
 
 ## Add new types to the synthetic
