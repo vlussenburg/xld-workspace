@@ -1,12 +1,12 @@
 ## Create application packages in XL Deploy
 
-Creating application packages from pre-existing artifact repositories and adding metadata required to deploy (datasource specs, queue definitions). For the basics one should refer to this guide.
+Creating application packages from pre-existing artifact repositories and adding metadata required to deploy (datasource specs, queue definitions). For the basics one should refer to [this guide](https://docs.xebialabs.com/xl-deploy/4.5.x/customizationmanual.html).
 
 Creating deployment package through the UI is clear not a scalable approach to deployment automation. The deployment packages can be automatically created using a number of options:
 
 -	A plugin for your CI server (Bamboo)
--	A CLI script 
--	The REST API (from XL Release, PowerShell, Bash, any custom tool)
+-	A CLI script using the [Jython API](https://docs.xebialabs.com/jython-docs/#!/xl-deploy/5.1.x/)
+-	[The REST API](https://docs.xebialabs.com/xl-release/5.0.x/rest-api/) (from XL Release, PowerShell, Bash, any custom tool)
 
 ## Plugin Design and Development Practice
 
@@ -18,7 +18,7 @@ XL Deploy supports many type of application packages and containers, but it is n
 
 In order to understand the XL Deploy extension mechanisms, it’s important to know the tool a little better than just using it for deployment will teach you. We recommend going through this manual first until (not including) the “Extending XL Deploy” chapter. This manual explains essentials concepts of what moving pieces there are under the hood. Especially deployable, deployed and container are going to be used a lot in the rest of this document.
 
-We recommand there will be a sandbox XL Deploy made available (not yet available when this was written at 03/23/16) for working on supporting new types of deployables and containers. The sandbox machine is an unmanaged free-for-all environment. It is only to be used to develop new types, and not by any teams do actual deployments on a regular interval. It’s just for testing purposes.
+We recommend having a sandbox XL Deploy / XL Release for working on supporting new types of deployables and containers. The sandbox machine should be an unmanaged free-for-all environment. It is only to be used to develop new types, and not by any teams do actual deployments on a regular interval. It’s just for testing purposes.
 
 ### Preparing your plugin
 
@@ -26,17 +26,17 @@ You start your development cycle by defining a name for your plugin and requesti
 
 ### Setting up your tools and workspace
 
-Since plugin development is not unlike software development, we recommend this to be done in a professional manner using development best practices like version control and automated repeatable builds. Every plugin should have its own repository in a version control system like SVN or Git. You should also consider building the plugin using a CI server like Bamboo or Jenkins.
+Since plugin development is not unlike software development, we recommend this to be done in a professional manner using development best practices like using version control, like SVN or Git, and automated repeatable builds, using Gradle or Maven and optionally building the plugin automatically using a Continuous Integration server like Bamboo or Jenkins.
 
-There is no official recommended editor for XL Deploy, but consider Notepad++, a decent tool for editing Jython, XML and shell scripts. Don’t even think about doing any work on plugins with regular notepad!
+There is no official recommended editor for XL Deploy/XL Release, but consider Notepad++, a decent free tool for editing Jython, XML and shell scripts or Sublime, if you're willing to get a license for it. Don’t even think about doing any work on plugins with regular notepad!
 
 ### Creating the plugin project structure
 
-Remember that anything on the sandbox environment is volatile: someone might delete, modify or overwrite your scripts and configuration. For this reason it’s essential to start right away to put your work in a plugin structure managed within a GIT repository. On the production Stash environment, there is a ARA project under which new repositories for plugins can be added. Go through regular processes to request repositories and build processes.
+Remember that anything in the ext/ folder on the XL Deploy / XL Release sandbox environment is volatile: someone might delete, modify or overwrite your scripts and configuration. For this reason it’s essential to start right away to put your work in a plugin structure managed within a version controlled repository.
 
 As a rule of thumb, you can copy everything from an existing plugin and then delete the contents of the src/main/resources folder. You should end up with something that looks like:
  
-Add an empty synthetic.xml to the src/main/resources folder with the following content:
+An empty synthetic.xml to the src/main/resources folder with the following content:
 ````
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
