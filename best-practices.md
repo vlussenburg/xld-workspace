@@ -1,6 +1,6 @@
 ## Create application packages in XL Deploy
 
-Creating application packages from pre-existing artifact repositories and adding metadata required to deploy (datasource specs, queue definitions). For the basics one should refer to [this guide](https://docs.xebialabs.com/xl-deploy/5.5.x/customizationmanual.html). Creating deployment packages through the UI is clear not a scalable approach to deployment automation. The deployment packages can be automatically created using a number of options:
+Creating application packages from pre-existing artifact repositories and adding metadata required to deploy (datasource specs, queue definitions). For the basics one should refer to [this guide](https://docs.xebialabs.com/xl-deploy/5.5.x/customizationmanual.html). Creating deployment packages through the UI is clearly not a scalable approach to deployment automation. The deployment packages can be automatically created using a number of options:
 
 -	A plugin for your CI server (Bamboo, Jenkins)
 -	A CLI script using the [Jython API](https://docs.xebialabs.com/jython-docs/#!/xl-deploy/5.5.x/) 
