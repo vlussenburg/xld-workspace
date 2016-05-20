@@ -1,18 +1,17 @@
 ## Create application packages in XL Deploy
 
-Creating application packages from pre-existing artifact repositories and adding metadata required to deploy (datasource specs, queue definitions). For the basics one should refer to [this guide](https://docs.xebialabs.com/xl-deploy/4.5.x/customizationmanual.html).
+Creating application packages from pre-existing artifact repositories and adding metadata required to deploy (datasource specs, queue definitions). For the basics one should refer to [this guide](https://docs.xebialabs.com/xl-deploy/5.5.x/customizationmanual.html). Creating deployment packages through the UI is clear not a scalable approach to deployment automation. The deployment packages can be automatically created using a number of options:
 
-Creating deployment package through the UI is clear not a scalable approach to deployment automation. The deployment packages can be automatically created using a number of options:
-
--	A plugin for your CI server (Bamboo)
--	A CLI script using the [Jython API](https://docs.xebialabs.com/jython-docs/#!/xl-deploy/5.1.x/)
--	[The REST API](https://docs.xebialabs.com/xl-release/5.0.x/rest-api/) (from XL Release, PowerShell, Bash, any custom tool)
+-	A plugin for your CI server (Bamboo, Jenkins)
+-	A CLI script using the [Jython API](https://docs.xebialabs.com/jython-docs/#!/xl-deploy/5.5.x/) 
+-	[The REST API](https://docs.xebialabs.com/xl-deploy/5.5.x/rest-api/) (from XL Release, PowerShell, Bash, any custom tool)
 
 ## Plugin Design and Development Practice
 
-XL Deploy supports many type of application packages and containers, but it is not uncommon that XL Deploy needs some customization specific to the enterprise where it’s running. Examples of customizations points are:
+XL Deploy supports many types of application packages and containers, but it is not uncommon that XL Deploy needs some customization specific to the enterprise where it’s running. Examples of customizations points are:
 
--	Custom deployable and container types
+-	Custom deployable and container types for in-house created deployable concepts
+-	Custom rules for startup / shutdown of industry-standard containers
 
 ## Developing support for custom application types (deployment packages) and middleware (containers)
 
