@@ -1,5 +1,5 @@
-# Pilot phase:
-## Start with 1-5 pilot teams, taking care of selecting important projects with a business incentive for frequent production deployments BUT not mission critical ones. Try to focus on various technologies.
+- Pilot phase:
+  - Start with 1-5 pilot teams, taking care of selecting important projects with a business incentive for frequent production deployments BUT not mission critical ones. Try to focus on various technologies.
 ## Don’t do all 5 at the same time
 ## The teams should feel the incentive to invest in the pipeline
 ## Start writing an onboarding process / user manual for the CD tooling
