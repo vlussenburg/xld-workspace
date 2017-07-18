@@ -79,9 +79,9 @@ From your design discussion (document this discussion in the README.md in the ro
 Creating (many) custom types is not necessarily best practice. Creating custom types means maintaining custom types. Depending on the amount of necessary universal properties and rules across deployment artifacts, having a custom type with these properties and rules defined ahead of time is a simple and effective way to ensure common behavior. Proper management of types will also ensure that the right artifacts land into the right containers. 
 
 Now add the types to the XML using an editor of your choosing. You can do this in an iterative approach, starting naïvely simple and slowly building it out, keeping a working plugin every step of the way.
+
 Some handy resources:
 
--	Generic Plugin manual you’ll extend these types 99% of the time when rolling new plugins. Especially ExecutedScriptWithDerivedArtifact!
 -	Deployable (99% of the time you’ll generate this from the Deployed, read the manual!)
 -	Deployed
 -	Container
