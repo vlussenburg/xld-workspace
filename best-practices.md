@@ -80,6 +80,7 @@ Creating (many) custom types is not necessarily best practice. Creating custom t
 
 Now add the types to the XML using an editor of your choosing. You can do this in an iterative approach, starting naïvely simple and slowly building it out, keeping a working plugin every step of the way.
 Some handy resources:
+
 -	Generic Plugin manual you’ll extend these types 99% of the time when rolling new plugins. Especially ExecutedScriptWithDerivedArtifact!
 -	Deployable (99% of the time you’ll generate this from the Deployed, read the manual!)
 -	Deployed
@@ -88,8 +89,10 @@ Some handy resources:
 ## Create scripts
 
 Writing shell scripts is often a process of trial and error. The only good way of testing a plugin is actually deploying and usually that means a dependency on complicated middleware. Usually you’ll end up having some kind of artifact which you want on the target host and an installation script to invoke. These installation scripts should be data driven. In other words, no hardcoded names, no hardcoded paths, no hardcoded server names. XL Deploy uses an open source templating engine (Freemarker) to allow you make templates for your scripts and specify which variables you can use. Resources that are very useful are:
-•	Templating in the Generic Plugin
-•	XL Deploy Variables Demystified
+
+- Templating in the Generic Plugin
+- XL Deploy Variables Demystified
+
 Although templates for scripts are part of the plugin as well, you can create a fast feedback loop by overriding the script you have in your plugin in the /ext folder of XL Deploy. Every time you edit at this location, XL Deploy will pick up the changes. This is very handy when debugging shell scripts. However, once development is finished, the script in this folder should be packaged and placed in the plugin project and the /ext folder should be cleared of said plugin code. 
 
 ## Create rules
