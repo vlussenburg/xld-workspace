@@ -169,33 +169,6 @@ print "Performing  Load Tests"
         }
       }
     }
-    extensions {
-      dashboard('Dashboard') {
-        tiles {
-          releaseProgressTile('Release progress') {
-            
-          }
-          releaseHealthTile('Release health') {
-            
-          }
-          releaseSummaryTile('Release summary') {
-            
-          }
-          resourceUsageTile('Resource usage') {
-            row 1
-          }
-          timelineTile('Release timeline') {
-            row 2
-          }
-          serviceNowQueryTile('ServiceNow tickets') {
-            row 1
-            col 2
-            servicenowServer 'servicenow'
-            detailsViewColumns 'number':'number','short_description':'short_description','state':'state','priority':'priority','assigned_to':'assigned_to.display_value'
-          }
-        }
-      }
-    }
     
   }
 }
