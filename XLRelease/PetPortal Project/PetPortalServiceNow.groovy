@@ -29,7 +29,7 @@ xlr {
     }
     scheduledStartDate Date.parse("yyyy-MM-dd'T'HH:mm:ssZ", '2016-02-02T08:00:00+0000')
     phases {
-      phase('Dev') {
+      phase('Dev!') {
         color '#009CDB'
         tasks {
           custom('Open Change Request') {
